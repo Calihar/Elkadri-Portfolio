@@ -1,0 +1,56 @@
+<!-- src/app/components/vague-timeline/vague-timeline.component.html -->
+<section
+	class="vtl"
+	[class.vtl--horizontal]="orientation === 'horizontal'"
+	[class.vtl--compact]="compact"
+	role="list"
+	aria-label="Portfolio timeline (sequence without dates)"
+	>
+	<ng-container *ngFor="let s of stories; index as i">
+		<!-- Optional “era”/section label (purely decorative, no dates) -->
+		<div *ngIf="groupEvery && i % groupEvery === 0" class="vtl__era" aria-hidden="true">
+		<span>Then…</span>
+		</div>
+
+		<article
+		class="vtl__item"
+		role="listitem"
+		[class.vtl__item--left]="isLeft(i)"
+		[tabindex]="activeIndex() === i ? 0 : -1"
+		(keydown)="onKeydown($event, i)"
+		[attr.aria-label]="'Story ' + (i + 1) + ': ' + s.title"
+		>
+		<div class="vtl__rail" aria-hidden="true">
+			<div class="vtl__dot">
+				<span *ngIf="showSteps" class="vtl__step">{{ stepOf(i) }}</span>
+				<span *ngIf="!showSteps && s.icon" class="vtl__icon">{{ s.icon }}</span>
+			</div>
+		</div>
+
+		<div class="vtl__card">
+			<header class="vtl__header">
+			<h3 class="vtl__title">{{ s.title }}</h3>
+			<ul *ngIf="s.badges?.length" class="vtl__badges" aria-label="Tags">
+				<li *ngFor="let b of s.badges" class="vtl__badge">{{ b }}</li>
+			</ul>
+			</header>
+
+			<p *ngIf="s.summary" class="vtl__summary">{{ s.summary }}</p>
+
+			<ul *ngIf="s.bullets?.length" class="vtl__bullets">
+			<li *ngFor="let b of s.bullets">{{ b }}</li>
+			</ul>
+
+			<figure *ngIf="s.mediaUrl" class="vtl__media">
+			<img [src]="s.mediaUrl" [alt]="s.title + ' preview'" loading="lazy" />
+			</figure>
+
+			<footer class="vtl__footer">
+			<a *ngIf="s.linkUrl" class="vtl__link" [href]="s.linkUrl" target="_blank" rel="noopener">
+				Learn more →
+			</a>
+			</footer>
+		</div>
+		</article>
+	</ng-container>
+	</section>

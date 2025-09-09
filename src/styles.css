@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+.main-container {
+	height: auto;
+	min-height: 95vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: top;
+	align-items: center;
+	color: #fff;
+	text-align: center;	
+	background: linear-gradient(-45deg, #24317B, #896FBB, #314CAE, #0E1432);
+  	background-size: 100% 100%;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 600px) {
+	.main-container {
+		min-height: 100%;
+		padding: 1rem;
+	}
+}

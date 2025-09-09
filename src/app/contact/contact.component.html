@@ -1,0 +1,42 @@
+<div class="main-container">
+  <div class="container my-5">
+    <h2 class="text-center mb-4">Contact Me</h2>
+
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="mx-auto" style="max-width: 500px;">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input id="name" type="text" formControlName="name" class="form-control"
+              [ngClass]="{'is-invalid': submitted && contactForm.controls['name'].invalid}" />
+        <div *ngIf="submitted && contactForm.controls['name'].invalid" class="invalid-feedback">
+          Name is required.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input id="email" type="email" formControlName="email" class="form-control"
+              [ngClass]="{'is-invalid': submitted && contactForm.controls['email'].invalid}" />
+        <div *ngIf="submitted && contactForm.controls['email'].invalid" class="invalid-feedback">
+          Valid email is required.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="message" class="form-label">Message</label>
+        <textarea id="message" rows="4" formControlName="message" class="form-control"
+                  [ngClass]="{'is-invalid': submitted && contactForm.controls['message'].invalid}"></textarea>
+        <div *ngIf="submitted && contactForm.controls['message'].invalid" class="invalid-feedback">
+          Message is required.
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100" [disabled]="sending">
+        {{ sending ? 'Sending…' : 'Send' }}
+      </button>
+
+      <div *ngIf="successMsg" class="alert alert-success mt-3">{{ successMsg }}</div>
+      <div *ngIf="errorMsg" class="alert alert-danger mt-3">{{ errorMsg }}</div>
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,15 @@
+h1 {
+	font-size: 5em;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.home-container {
+	margin-top: 10rem;
+}
+
+@media (max-width: 600px) {
+	.home-container {
+		margin-top: 1rem;
+	}
+}
