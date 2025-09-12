@@ -3,4 +3,5 @@ export interface ProjectOverview {
 	  title: string;
 	  shortDescription: string;
 	  thumbnailUrl: string;
+	  demo: boolean;
 }

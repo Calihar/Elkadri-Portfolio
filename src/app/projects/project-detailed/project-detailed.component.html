@@ -4,5 +4,9 @@
 	<p>{{project?.title}}</p>
 	<p>{{project?.shortDescription}}</p>
 
+	<div *ngIf="project?.demo" class="d-grid gap-2 d-md-flex justify-content-center mb-4 mb-lg-3">
+		<button [routerLink]="['/demo', project?.id]" type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Try the Demo</button>
+	</div>
+
 </div>
 

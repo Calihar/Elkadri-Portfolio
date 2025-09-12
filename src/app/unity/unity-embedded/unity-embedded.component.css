@@ -1,0 +1,33 @@
+/* Full-page center stage */
+.phone-stage {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;     /* centers horizontally + vertically */
+  background: transparent;     /* page background (outside phone) */
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* The “phone” wrapper: fixed iPhone-11 portrait aspect, scales with height */
+.phone {
+  height: min(92vh, 896px); /* scale with viewport height, cap at native CSS points */
+  aspect-ratio: 414 / 896;  /* iPhone 11 portrait ratio */
+  display: grid;
+  place-items: center;
+  background: transparent;         /* bezel/bg behind screen */
+  border-radius: 28px;      /* subtle rounded “device” corners */
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  padding: 12px;            /* bezel thickness */
+  overflow: hidden;
+}
+
+/* The Unity canvas fills the phone’s “screen” */
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  display: block;
+  background: #000;
+  outline: none;
+}
+
