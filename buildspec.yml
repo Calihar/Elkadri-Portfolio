@@ -1,0 +1,62 @@
+version: 0.2
+
+env:
+  variables:
+    ANGULAR_CONFIGURATION: "production"  # change to dev/staging/etc if needed
+    NODE_VERSION: "18"
+    S3_BUCKET: "{{s3_bucket_url}}"
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo "Node $(node -v), npm $(npm -v)"
+      - npm ci
+      - if ! npx --no-install ng version >/dev/null 2>&1; then npm i -D @angular/cli; fi
+
+  pre_build:
+    commands:
+      - echo "Reading angular.json for outputPath..."
+      - |
+        node - <<'NODE'
+        const fs = require('fs');
+        const path = require('path');
+        const f = path.join(process.env.CODEBUILD_SRC_DIR || '.', 'angular.json');
+        const j = JSON.parse(fs.readFileSync(f, 'utf8'));
+        const projectName = j.defaultProject || Object.keys(j.projects || {})[0];
+        if (!projectName) throw new Error('No projects found in angular.json');
+        const proj = j.projects[projectName];
+        const build = (proj.architect && proj.architect.build) || (proj.targets && proj.targets.build) || {};
+        const opts = (build.options) || {};
+        const confs = (build.configurations) || {};
+        const confName = process.env.ANGULAR_CONFIGURATION || 'production';
+        const conf = confs[confName] || {};
+        const out = conf.outputPath || opts.outputPath || `dist/${projectName}`;
+        console.log('PROJECT_NAME=' + projectName);
+        console.log('OUTPUT_PATH=' + out);
+        NODE
+        | tee build_meta.env
+      - export $(cat build_meta.env | xargs)
+
+  build:
+    commands:
+      - echo "Building Angular app with configuration: $ANGULAR_CONFIGURATION"
+      - npm run build -- --configuration="$ANGULAR_CONFIGURATION"
+      - echo "Build complete at: $OUTPUT_PATH"
+      - rm -rf package && mkdir -p package/web
+      - cp -R "$OUTPUT_PATH"/. package/web/
+
+  post_build:
+    commands:
+      - echo "Contents of package/web:"
+      - ls -la package/web
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: package/web
+
+cache:
+  paths:
+    - '/root/.npm/**/*'

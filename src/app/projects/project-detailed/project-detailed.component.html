@@ -1,12 +1,99 @@
-<div class="main-container">
+<div class="main-container" data-bs-theme="dark">
+  <div
+    class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center"
+  >
+    <div class="col-md-6 p-lg-5 mx-auto my-5">
+      <h1 class="display-1 fw-bold">{{ project?.title }}</h1>
+      <h3 class="fw-normal text-muted mb-3">
+        {{ project?.shortDescription }}
+      </h3>
+      <div class="d-flex gap-3 justify-content-center lead fw-normal">
+        <a
+          class="icon-link"
+          href="{{ unityGameInfo?.githubUrl }}"
+          *ngIf="unityGameInfo?.githubUrl"
+        >
+          Github Repo
+          <svg class="bi" aria-hidden="true">
+            <use xlink:href="#chevron-right"></use>
+          </svg>
+        </a>
+        <a
+          class="icon-link"
+          [routerLink]="['/demo', project?.id]"
+          *ngIf="project?.demo"
+        >
+          Try the Demo
+          <svg class="bi" aria-hidden="true">
+            <use xlink:href="#chevron-right"></use>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="product-device shadow-sm d-none d-md-block"></div>
+    <div
+      class="product-device product-device-2 shadow-sm d-none d-md-block"
+    ></div>
+  </div>
 
+  <div class="container py-4" *ngIf="project?.features as feats">
+	<div class="text-center display-3 fw-bold mb-4">Features</div>
+  <ng-container *ngFor="let _ of feats; let i = index">
+    <div class="row g-4 mb-4" *ngIf="i % 2 === 0">
+      <!-- Left -->
+      <div class="col-md-6 d-flex" [class.offset-md-3]="!feats[i + 1]">
+        <div class="bg-dark text-white text-center overflow-hidden w-100 h-100 p-3 p-md-5 rounded-3">
+          <div class="my-3">
+            <h2 class="h3 mb-2">{{ feats[i].name }}</h2>
+            <p class="lead mb-0">{{ feats[i].description }}</p>
+          </div>
+          <div class="bg-body-tertiary shadow-sm mx-auto mt-auto"
+               style="width:80%;height:300px;border-radius:21px 21px 0 0;">
+			<img [src]="feats[i].icon || 'elkadri-token.png'" class="img-fluid" alt="{{feats[i].name}}" 
+			style="height: 100%; width: 100%; object-fit: contain;border-radius:21px 21px 0 0;">
+			</div>
+        </div>
+      </div>
 
-	<p>{{project?.title}}</p>
-	<p>{{project?.shortDescription}}</p>
-
-	<div *ngIf="project?.demo" class="d-grid gap-2 d-md-flex justify-content-center mb-4 mb-lg-3">
-		<button [routerLink]="['/demo', project?.id]" type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Try the Demo</button>
-	</div>
-
+      <!-- Right (only if exists) -->
+      <div class="col-md-6 d-flex" *ngIf="feats[i + 1];">
+        <div class="bg-dark text-white text-center overflow-hidden w-100 h-100 p-3 p-md-5 rounded-3">
+          <div class="my-3">
+            <h2 class="h3 mb-2">{{ feats[i + 1].name }}</h2>
+            <p class="lead mb-0">{{ feats[i + 1].description }}</p>
+          </div>
+          <div class="bg-body-tertiary shadow-sm mx-auto mt-auto"
+               style="width:80%;height:300px;border-radius:21px 21px 0 0;">
+			<img [src]="feats[i + 1].icon || 'elkadri-token.png'" class="img-fluid" alt="{{feats[i + 1].name}}" 
+			style="height: 100%; width: 100%; object-fit: contain; border-radius:21px 21px 0 0;">
+			</div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
 </div>
 
+<main class="text-start">
+	<section *ngIf="project?.documentations" class="bd-cheatsheet container-fluid">
+		<div class="text-center display-3 fw-bold mb-4 mt-4">Documentation</div>
+	</section>
+
+	<section *ngFor="let doc of project?.documentations" class="bd-cheatsheet container-fluid">
+		<section id="doc-{{doc.step}}">
+			<h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">{{doc.step}}. {{doc.title}}</h2>
+			<div class="row mb-4">
+				<div class="col-md-6">
+					<p *ngFor="let desc of doc.description">{{desc}}</p>
+				</div>
+				<div *ngIf="doc.imageUrl" class="col-md-6">
+					<img  [src]="doc.imageUrl" class="img-fluid" alt="{{doc.title}}" style="height: 100%; width: 100%; object-fit: contain;">
+				</div>
+			</div>
+		</section>
+	</section>
+</main>
+
+
+
+
+</div>
