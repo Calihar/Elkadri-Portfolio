@@ -15,7 +15,7 @@ phases:
         - echo Building the project...
         - npm cache clean --force
         - npm install -g @angular/cli@latest
-        - npm ci
+        - npm install
 
   build:
     commands:
