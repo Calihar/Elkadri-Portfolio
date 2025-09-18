@@ -23,18 +23,11 @@ phases:
     commands:
       - echo Build Started
       - ng build
-      - echo Build completed on `date`
-  post_build:
-    commands:
-      # pick the right output dir for your Angular version
-      - BUILD_DIR="dist/elkadri-portfolio/browser"
-      # copy *contents* of BUILD_DIR to the bucket (note the trailing slash)
-      - aws s3 sync "$BUILD_DIR/" "s3://$S3_BUCKET/" --delete
-      
+      - echo Build completed on `date`      
 
 artifacts:
   files:
     - '**/*'
-  base-directory: './dist'
+  base-directory: 'dist/elkadri-portfolio/browser'
   discard-paths: no
 
