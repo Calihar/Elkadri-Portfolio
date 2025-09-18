@@ -35,6 +35,7 @@ export class UnityEmbeddedComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     const script = document.createElement('script');
     script.src = `/assets/unity/${this.unityGameInfo?.folderName}/Build/${this.unityGameInfo?.folderName}.loader.js`;
+    console.log(script.src);
     script.onload = () => this.bootUnity();
     document.body.appendChild(script);
   }
