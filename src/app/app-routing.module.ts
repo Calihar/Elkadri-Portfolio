@@ -8,12 +8,13 @@ import { ProjectDetailedComponent } from './projects/project-detailed/project-de
 import { UnityEmbeddedComponent } from './unity/unity-embedded/unity-embedded.component';
 
 const routes: Routes = [
-  {path:"", component: HomeComponent},
-  {path:"projects", component: ProjectHomeComponent},
-  {path:"about", component: PortfolioHistoryComponent},
-  {path:"contact", component: ContactComponent},
-  {path:"project/:id", component: ProjectDetailedComponent},
-  {path:"demo/:id", component: UnityEmbeddedComponent},
+  { path: "", redirectTo: "home", pathMatch: "full" },
+  { path: "home", component: HomeComponent },
+  { path:"projects", component: ProjectHomeComponent},
+  { path:"about", component: PortfolioHistoryComponent},
+  { path:"contact", component: ContactComponent},
+  { path:"project/:id", component: ProjectDetailedComponent},
+  { path:"demo/:id", component: UnityEmbeddedComponent},
 ];
 
 @NgModule({
