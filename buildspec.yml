@@ -11,6 +11,8 @@ phases:
     runtime-versions:
       nodejs: 23.10.0
     commands:
+        - echo S3_BUCKET = $S3_BUCKET
+        - echo BUILD_FOLDER = $BUILD_FOLDER
         - echo Build started on `date`
         - echo Building the project...
         - npm cache clean --force
