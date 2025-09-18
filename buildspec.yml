@@ -28,6 +28,6 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: 'dist/elkadri-portfolio/browser'
-  discard-paths: no
+  base-directory: './dist'
+  discard-paths: yes
 
