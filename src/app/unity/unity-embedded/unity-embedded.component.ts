@@ -34,8 +34,8 @@ export class UnityEmbeddedComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     const script = document.createElement('script');
-    //script.src = `/assets/unity/${this.unityGameInfo?.folderName}/Build/${this.unityGameInfo?.folderName}.loader.js`;
-    script.src = `/${this.unityGameInfo?.folderName}.loader.js`
+    script.src = `/assets/unity/${this.unityGameInfo?.folderName}/Build/${this.unityGameInfo?.folderName}.loader.js`;
+    ///script.src = `/${this.unityGameInfo?.folderName}.loader.js`
     console.log(script.src);
     script.onload = () => this.bootUnity();
     document.body.appendChild(script);
@@ -53,12 +53,12 @@ export class UnityEmbeddedComponent implements AfterViewInit, OnDestroy {
 
     const buildBase = `/assets/unity/${this.unityGameInfo?.folderName}/Build`;
     const config = {
-      //dataUrl:       `${buildBase}/${this.unityGameInfo?.folderName}.data`,
-      //frameworkUrl:  `${buildBase}/${this.unityGameInfo?.folderName}.framework.js`,
-      //codeUrl:       `${buildBase}/${this.unityGameInfo?.folderName}.wasm`,
-      dataUrl:       `${this.unityGameInfo?.folderName}.data`,
-      frameworkUrl:  `${this.unityGameInfo?.folderName}.framework.js`,
-      codeUrl:       `${this.unityGameInfo?.folderName}.wasm`,
+      dataUrl:       `${buildBase}/${this.unityGameInfo?.folderName}.data`,
+      frameworkUrl:  `${buildBase}/${this.unityGameInfo?.folderName}.framework.js`,
+      codeUrl:       `${buildBase}/${this.unityGameInfo?.folderName}.wasm`,
+      //dataUrl:       `${this.unityGameInfo?.folderName}.data`,
+      //frameworkUrl:  `${this.unityGameInfo?.folderName}.framework.js`,
+      //codeUrl:       `${this.unityGameInfo?.folderName}.wasm`,
       devicePixelRatio: 1      // lock DPR so 828x1792 is the render size
     };
 

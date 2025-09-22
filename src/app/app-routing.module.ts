@@ -8,8 +8,7 @@ import { ProjectDetailedComponent } from './projects/project-detailed/project-de
 import { UnityEmbeddedComponent } from './unity/unity-embedded/unity-embedded.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "home", pathMatch: "full" },
-  { path: "home", component: HomeComponent },
+  { path: "", component: HomeComponent },
   { path:"projects", component: ProjectHomeComponent},
   { path:"about", component: PortfolioHistoryComponent},
   { path:"contact", component: ContactComponent},
