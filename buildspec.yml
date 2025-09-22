@@ -2,7 +2,8 @@ version: 0.2
 env:
   variables:
     IMAGE_REPO_NAME: elkadri/portfolio
-    IMAGE_TAG: latest                    
+    IMAGE_TAG: latest
+    AWS_REGION: us-east-1              
   git-credential-helper: yes
 phases:
   pre_build:
@@ -11,7 +12,6 @@ phases:
       - echo "AWS CLI: $(aws --version)"
       - echo "Caller identity:" && aws sts get-caller-identity
       # Ensure region is set (override in project env vars if needed)
-      - "${AWS_REGION:=us-east-1}"
       - echo "Using AWS_REGION=$AWS_REGION"
       # Resolve the ECR repo URI from ECR itself (avoids typos/mismatch)
       - : "${IMAGE_REPO_NAME:=elkadri/portfolio}"     # <-- your ECR repo name
