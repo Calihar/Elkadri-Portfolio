@@ -53,9 +53,9 @@ export class UnityEmbeddedComponent implements AfterViewInit, OnDestroy {
 
     const buildBase = `/assets/unity/${this.unityGameInfo?.folderName}/Build`;
     const config = {
-      dataUrl:       `${buildBase}/${this.unityGameInfo?.folderName}.data`,
-      frameworkUrl:  `${buildBase}/${this.unityGameInfo?.folderName}.framework.js`,
-      codeUrl:       `${buildBase}/${this.unityGameInfo?.folderName}.wasm`,
+      dataUrl:       `${buildBase}/${this.unityGameInfo?.folderName}.data.unityweb`,
+      frameworkUrl:  `${buildBase}/${this.unityGameInfo?.folderName}.framework.js.unityweb`,
+      codeUrl:       `${buildBase}/${this.unityGameInfo?.folderName}.wasm.unityweb`,
       //dataUrl:       `${this.unityGameInfo?.folderName}.data`,
       //frameworkUrl:  `${this.unityGameInfo?.folderName}.framework.js`,
       //codeUrl:       `${this.unityGameInfo?.folderName}.wasm`,
