@@ -2,10 +2,8 @@ version: 0.2
 
 env:
   variables:
-    IMAGE_REPO_NAME: elkadri/portfolio   # change
-    IMAGE_TAG: latest                    # or use the commit SHA
-  parameter-store:
-    # (Optional) if you keep secrets in SSM
+    IMAGE_REPO_NAME: elkadri/portfolio
+    IMAGE_TAG: latest                    
   git-credential-helper: yes
 
 phases:
