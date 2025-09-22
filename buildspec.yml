@@ -9,21 +9,24 @@ env:
 phases:
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-      - AWS_REGION=${AWS_REGION:-us-east-1}
-      - REPOSITORY_URI=$ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$IMAGE_REPO_NAME
-      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+      - set -euxo pipefail
+      - echo "AWS CLI: $(aws --version)"
+      - echo "Caller identity:" && aws sts get-caller-identity
+      # Ensure region is set (override in project env vars if needed)
+      - : "${AWS_REGION:=us-east-1}"
+      - echo "Using AWS_REGION=$AWS_REGION"
+      # Resolve the ECR repo URI from ECR itself (avoids typos/mismatch)
+      - : "${IMAGE_REPO_NAME:=elkadri-portfolio}"     # <-- your ECR repo name
+      - REPOSITORY_URI=$(aws ecr describe-repositories --repository-names "$IMAGE_REPO_NAME" --region "$AWS_REGION" --query 'repositories[0].repositoryUri' --output text)
       - echo "REPOSITORY_URI=$REPOSITORY_URI"
+      # Log in to the EXACT registry/region of that repo
+      - aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$(echo "$REPOSITORY_URI" | awk -F/ '{print $1}')"
   build:
     commands:
-      - echo Building Docker image...
-      - docker build -t $IMAGE_REPO_NAME .
-      - docker tag $IMAGE_REPO_NAME:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker build -t "$REPOSITORY_URI:$IMAGE_TAG" .
   post_build:
     commands:
-      - echo Pushing image...
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker push "$REPOSITORY_URI:$IMAGE_TAG"
       - printf '[{"name":"web","imageUri":"%s"}]' "$REPOSITORY_URI:$IMAGE_TAG" > imagedefinitions.json
 artifacts:
   files:
