@@ -9,7 +9,7 @@ phases:
   pre_build:
     commands:
       - >
-        set -euxo pipefail
+        set -e
       - >
         echo "AWS CLI: $(aws --version)"
       - >
