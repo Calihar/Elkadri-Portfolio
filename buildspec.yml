@@ -11,7 +11,7 @@ phases:
       - echo "AWS CLI: $(aws --version)"
       - echo "Caller identity:" && aws sts get-caller-identity
       # Ensure region is set (override in project env vars if needed)
-      - : "${AWS_REGION:=us-east-1}"
+      - "${AWS_REGION:=us-east-1}"
       - echo "Using AWS_REGION=$AWS_REGION"
       # Resolve the ECR repo URI from ECR itself (avoids typos/mismatch)
       - : "${IMAGE_REPO_NAME:=elkadri/portfolio}"     # <-- your ECR repo name
