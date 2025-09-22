@@ -1,11 +1,9 @@
 version: 0.2
-
 env:
   variables:
     IMAGE_REPO_NAME: elkadri/portfolio
     IMAGE_TAG: latest                    
   git-credential-helper: yes
-
 phases:
   pre_build:
     commands:
@@ -16,7 +14,7 @@ phases:
       - : "${AWS_REGION:=us-east-1}"
       - echo "Using AWS_REGION=$AWS_REGION"
       # Resolve the ECR repo URI from ECR itself (avoids typos/mismatch)
-      - : "${IMAGE_REPO_NAME:=elkadri-portfolio}"     # <-- your ECR repo name
+      - : "${IMAGE_REPO_NAME:=elkadri/portfolio}"     # <-- your ECR repo name
       - REPOSITORY_URI=$(aws ecr describe-repositories --repository-names "$IMAGE_REPO_NAME" --region "$AWS_REGION" --query 'repositories[0].repositoryUri' --output text)
       - echo "REPOSITORY_URI=$REPOSITORY_URI"
       # Log in to the EXACT registry/region of that repo
