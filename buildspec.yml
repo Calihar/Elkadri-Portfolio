@@ -11,7 +11,7 @@ phases:
       - set -euxo pipefail
       - echo "AWS CLI: $(aws --version)"
       - aws sts get-caller-identity
-      - : "${AWS_REGION:=us-east-1}"
+      - AWS_REGION=${AWS_REGION:=us-east-1}
       - echo "Using AWS_REGION=$AWS_REGION"
       - REPOSITORY_URI=$(aws ecr describe-repositories --repository-names "$IMAGE_REPO_NAME" --region "$AWS_REGION" --query 'repositories[0].repositoryUri' --output text)
       - echo "REPOSITORY_URI=$REPOSITORY_URI"
