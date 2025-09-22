@@ -8,24 +8,36 @@ env:
 phases:
   pre_build:
     commands:
-      - set -euxo pipefail
-      - echo "AWS CLI: $(aws --version)"
-      - aws sts get-caller-identity
-      - AWS_REGION=${AWS_REGION:=us-east-1}
-      - echo "Using AWS_REGION=$AWS_REGION"
-      - REPOSITORY_URI=$(aws ecr describe-repositories --repository-names "$IMAGE_REPO_NAME" --region "$AWS_REGION" --query 'repositories[0].repositoryUri' --output text)
-      - echo "REPOSITORY_URI=$REPOSITORY_URI"
-      - aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$(echo "$REPOSITORY_URI" | awk -F/ '{print $1}')"
+      - >
+        set -euxo pipefail
+      - >
+        echo "AWS CLI: $(aws --version)"
+      - >
+        aws sts get-caller-identity
+      - >
+        AWS_REGION=${AWS_REGION:=us-east-1}
+      - >
+        echo "Using AWS_REGION=$AWS_REGION"
+      - >
+        REPOSITORY_URI=$(aws ecr describe-repositories --repository-names "$IMAGE_REPO_NAME" --region "$AWS_REGION" --query 'repositories[0].repositoryUri' --output text)
+      - >
+        echo "REPOSITORY_URI=$REPOSITORY_URI"
+      - >
+        aws ecr get-login-password --region "$AWS_REGION" | docker login --username AWS --password-stdin "$(echo "$REPOSITORY_URI" | awk -F/ '{print $1}')"
 
   build:
     commands:
-      - docker build -t "$REPOSITORY_URI:$IMAGE_TAG" .
+      - >
+        docker build -t "$REPOSITORY_URI:$IMAGE_TAG" .
 
   post_build:
     commands:
-      - docker push "$REPOSITORY_URI:$IMAGE_TAG"
-      - printf '[{"name":"web","imageUri":"%s"}]' "$REPOSITORY_URI:$IMAGE_TAG" > imagedefinitions.json
-      - echo "Contents of imagedefinitions.json:" && cat imagedefinitions.json
+      - >
+        docker push "$REPOSITORY_URI:$IMAGE_TAG"
+      - >
+        printf '[{"name":"web","imageUri":"%s"}]' "$REPOSITORY_URI:$IMAGE_TAG" > imagedefinitions.json
+      - >
+        echo "Contents of imagedefinitions.json:" && cat imagedefinitions.json
 
 artifacts:
   files:
