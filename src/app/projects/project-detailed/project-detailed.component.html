@@ -1,12 +1,18 @@
 <div class="main-container" data-bs-theme="dark">
-  <div
-    class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center"
-  >
-    <div class="col-md-6 p-lg-5 mx-auto my-5">
-      <h1 class="display-1 fw-bold">{{ project?.title }}</h1>
+  <div class="hero">
+    <div class="col-md-8 mx-auto my-5 text-center">
+      <h1 class="fw-bold hero-title">{{ project?.title }}</h1>
       <h3 class="fw-normal text-muted mb-3">
         {{ project?.shortDescription }}
       </h3>
+
+      <div *ngIf="project?.highlights as highlights" class="mb-3">
+        <h3 class="fw-bold">Highlights:</h3>
+        <span
+          *ngFor="let highlight of highlights; let isLast = last"
+          class="badge bg-secondary mb-2 mx-1"
+          >{{ highlight }}<span *ngIf="!isLast">,</span></span
+        >
       <div class="d-flex gap-3 justify-content-center lead fw-normal">
         <a
           class="icon-link"
@@ -38,7 +44,7 @@
 
   <div class="container py-4" *ngIf="project?.features as feats">
 	<div class="text-center display-3 fw-bold mb-4">Features</div>
-  <ng-container *ngFor="let _ of feats; let i = index">
+  <div *ngFor="let _ of feats; let i = index">
     <div class="row g-4 mb-4" *ngIf="i % 2 === 0">
       <!-- Left -->
       <div class="col-md-6 d-flex" [class.offset-md-3]="!feats[i + 1]">
@@ -70,27 +76,30 @@
         </div>
       </div>
     </div>
-  </ng-container>
+  </div>
 </div>
 
 <main class="text-start">
-	<section *ngIf="project?.documentations" class="bd-cheatsheet container-fluid">
-		<div class="text-center display-3 fw-bold mb-4 mt-4">Documentation</div>
-	</section>
+	<div *ngIf="project?.documentations" class="bd-cheatsheet container-fluid">
+		<div class="text-center display-3 fw-bold mb-4 mt-4">Project Story</div>
+	</div>
 
-	<section *ngFor="let doc of project?.documentations" class="bd-cheatsheet container-fluid">
-		<section id="doc-{{doc.step}}">
-			<h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">{{doc.step}}. {{doc.title}}</h2>
+	<div *ngFor="let doc of project?.documentations" class="bd-cheatsheet container-fluid">
+		<div id="doc-{{doc.step}}">
+			<h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3 text-center">{{doc.step}}. {{doc.title}}</h2>
 			<div class="row mb-4">
-				<div class="col-md-6">
-					<p *ngFor="let desc of doc.description">{{desc}}</p>
-				</div>
-				<div *ngIf="doc.imageUrl" class="col-md-6">
-					<img  [src]="doc.imageUrl" class="img-fluid" alt="{{doc.title}}" style="height: 100%; width: 100%; object-fit: contain;">
-				</div>
-			</div>
-		</section>
-	</section>
+        <div class="col-md-6" [class.offset-md-3]="!doc.imageUrl">
+          <p *ngFor="let desc of doc.description">{{ desc }}</p>
+        </div>
+
+        <div class="col-md-6" *ngIf="doc.imageUrl">
+          <img [src]="doc.imageUrl" class="img-fluid"
+              [alt]="doc.title"
+              style="height:100%;width:100%;object-fit:contain;">
+        </div>
+      </div>
+		</div>
+	</div>
 </main>
 
 

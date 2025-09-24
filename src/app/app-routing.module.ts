@@ -6,6 +6,7 @@ import { PortfolioHistoryComponent } from './timeline/portfolio-history/portfoli
 import { ContactComponent } from './contact/contact.component';
 import { ProjectDetailedComponent } from './projects/project-detailed/project-detailed.component';
 import { UnityEmbeddedComponent } from './unity/unity-embedded/unity-embedded.component';
+import { DemoComponent } from './demo/demo.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -13,7 +14,7 @@ const routes: Routes = [
   { path:"about", component: PortfolioHistoryComponent},
   { path:"contact", component: ContactComponent},
   { path:"project/:id", component: ProjectDetailedComponent},
-  { path:"demo/:id", component: UnityEmbeddedComponent},
+  { path:"demo/:id", component: DemoComponent},
 ];
 
 @NgModule({
