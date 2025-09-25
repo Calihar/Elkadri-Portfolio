@@ -5,7 +5,6 @@ export interface ProjectOverview {
 	  id: string;
 	  title: string;
 	  shortDescription: string;
-	  highlights?: string[];
 	  thumbnailUrl: string;
 	  demo: boolean;
 	  features?: Feature[];

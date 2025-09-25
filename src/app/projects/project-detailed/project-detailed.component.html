@@ -6,13 +6,7 @@
         {{ project?.shortDescription }}
       </h3>
 
-      <div *ngIf="project?.highlights as highlights" class="mb-3">
-        <h3 class="fw-bold">Highlights:</h3>
-        <span
-          *ngFor="let highlight of highlights; let isLast = last"
-          class="badge bg-secondary mb-2 mx-1"
-          >{{ highlight }}<span *ngIf="!isLast">,</span></span
-        >
+      
       <div class="d-flex gap-3 justify-content-center lead fw-normal">
         <a
           class="icon-link"
@@ -86,7 +80,7 @@
 
 	<div *ngFor="let doc of project?.documentations" class="bd-cheatsheet container-fluid">
 		<div id="doc-{{doc.step}}">
-			<h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3 text-center">{{doc.step}}. {{doc.title}}</h2>
+			<h2 class="fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3 text-center">{{doc.step}}. {{doc.title}}</h2>
 			<div class="row mb-4">
         <div class="col-md-6" [class.offset-md-3]="!doc.imageUrl">
           <p *ngFor="let desc of doc.description">{{ desc }}</p>
