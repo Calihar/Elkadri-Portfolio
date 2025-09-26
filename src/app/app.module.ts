@@ -12,6 +12,7 @@ import { VagueTimelineComponent } from './timeline/vague-timeline/vague-timeline
 import { PortfolioHistoryComponent } from './timeline/portfolio-history/portfolio-history.component';
 import { ProjectDetailedComponent } from './projects/project-detailed/project-detailed.component';
 import { UnityEmbeddedComponent } from './unity/unity-embedded/unity-embedded.component';
+import { DemoComponent } from './demo/demo.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UnityEmbeddedComponent } from './unity/unity-embedded/unity-embedded.co
     VagueTimelineComponent,
     PortfolioHistoryComponent,
     ProjectDetailedComponent,
-    UnityEmbeddedComponent
+    UnityEmbeddedComponent,
+    DemoComponent
   ],
   imports: [
     BrowserModule,

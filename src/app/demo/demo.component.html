@@ -1,0 +1,10 @@
+<ng-container>
+	<div *ngIf="isGame">
+		<app-unity-embedded></app-unity-embedded>	
+	</div>
+	<div *ngIf="!isGame" class="text-center main-container">
+		<h1 class="mb-4">{{ project?.title }}</h1>
+
+		<p class="lead mb-4">Demo is to be put here soon! Stay tuned until then!</p>
+	</div>	
+</ng-container>
