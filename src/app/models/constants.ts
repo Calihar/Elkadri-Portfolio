@@ -2,19 +2,48 @@ import { ProjectOverview } from "./project-overview";
 import { UnityGameInfo } from "./unity-game-info";
 
 export const PROJECTS : ProjectOverview[] = [
+  {
+      id: '0',
+      title: 'This Portfolio!',
+      shortDescription: 'Find the documentation for this AWS hosted Angular project!',
+      thumbnailUrl: 'elkadri-token.png',
+      demo: false,
+      features: [
+        {id: 0, name: 'Live Project Demos', description: 'Unity WebGL builds and app previews embedded in the portfolio.', icon: ''},
+        {id: 1, name: 'Structured Case Studies', description: 'Each project has Feature blurbs + a consistent Story (Goal → Built → Learned → Roadmap).', icon: ''},
+        {id: 2, name: 'Hybrid AWS Hosting', description: 'Amplify hosts the Angular (SSR-ready) site; S3 + CloudFront serves static assets and Unity builds for fast global delivery.', icon: ''},
+        {id: 3, name: 'CI/CD from GitHub', description: 'Branch builds, preview environments, and one-click deploys (Amplify) with artifacts also staged to S3 when needed.', icon: ''},
+        {id: 4, name: 'SPA-Friendly Routing & Headers', description: '404 rewrites fixed, correct MIME/Content-Encoding for WebGL, and cache rules tuned for large bundles.', icon: ''},
+        {id: 5, name: 'Performance & UX', description: 'Lazy-loaded Angular routes, responsive Bootstrap layout, accessible icons/labels, and Lighthouse-informed tweaks.', icon: ''},
+      ],
+      documentations: [
+        {step: 1, title: 'Goal', description: ["Create a professional hub that doesn’t just describe projects—it runs them—while keeping deployments simple, costs low, and page loads snappy worldwide."], imageUrl: ''},
+        {step: 2, title: 'What I Built', description: ["An Angular portfolio with modular project pages and embedded Unity WebGL demos.", 
+          "A hybrid AWS architecture:",
+          "Started with S3 + CloudFront and CodePipeline/CodeBuild—it worked, but some SSR/preview and header nuances made iteration slower.", 
+          "Explored ECS/ALB to learn containerized hosting and VPC/IGW/ALB networking; powerful, but overkill for a portfolio.", 
+          "Landed on Amplify + S3: Amplify for the main Angular app (SSR-friendly, preview branches), S3/CloudFront for heavy static artifacts (Unity builds, assets) where it shines."], imageUrl: ''},
+        {step: 3, title: 'What I Learned', description: ["Trade-offs in AWS hosting paths: S3+CloudFront = simplest + cheapest for static; Amplify = fastest path for SSR/preview pipelines; ECS/ALB = maximum control, higher operational overhead.",
+          "Practical WebGL deployment: compression headers, caching, and SPA rewrites matter as much as code.",
+          "Clear storytelling (Features + Story) makes each project read like a polished case study."
+        ], imageUrl: ''},
+        {step: 4, title: 'Roadmap', description: ["Keep Amplify as the app shell host, continue serving large static demos via S3/CloudFront.", "Expand demos (iOS companion notes, analytics)"], imageUrl: ''},
+        {step: 5, title: 'Outcome', description: ["A reliable, fast portfolio with real deployments behind every demo—Amplify for the site experience, S3/CloudFront for the heavy lifting—documenting the journey from S3 + CodePipeline → ECS → Amplify + S3 and why that hybrid is the right fit."], imageUrl: ''},
+      ]
+    },  
     {
       id: '1',
       title: 'Simple Fitness',
       shortDescription: 'From plan to first set—in seconds. ' +
         'An offline-first Android workout tracker that gets you lifting faster, keeps your history tidy, and looks good doing it.',
-      thumbnailUrl: 'simple-fitness-active-view.png',
+      thumbnailUrl: 'ic_dumbbell_launcher_3-playstore.png',
       demo: false,
       features: [
-        {id: 0, name: 'Easy Plan Builder', description: 'Spin up splits or one-off sessions in seconds—no endless setup screens.', icon: ''},
+        {id: 0, name: 'Easy Plan Builder', description: 'Spin up splits or one-off sessions in seconds—no endless setup screens.', icon: 'simple-fitness-create-plan.png'},
         {id: 1, name: 'Instant Start', description: 'Go from plan name to first set with minimal taps—perfect for in-gym edits.', icon: ''},
-        {id: 2, name: 'Flexible Tracking', description: 'Weight × reps, time, distance—track the metric that fits the movement.', icon: ''},
+        {id: 2, name: 'Flexible Tracking', description: 'Weight × reps, time, distance—track the metric that fits the movement.', icon: 'simple-fitness-track-metrics.png'},
         {id: 3, name: 'Contextual Notes', description: 'Attach notes to an exercise or a specific set so insights don’t get lost.', icon: ''},
-        {id: 4, name: 'Built-In Library', description: 'Start with a solid exercise set and extend it with your own.', icon: ''},
+        {id: 4, name: 'Built-In Library', description: 'Start with a solid exercise set and extend it with your own.', icon: 'simple-fitness-starting-exercises.png'},
         {id: 5, name: 'Offline & Fast (Room/SQLite)', description: 'Your data lives on-device for speed and privacy.', icon: ''},
         {id: 6, name: 'Auth & Recovery', description: 'Firebase sign-in with password reset for peace of mind.', icon: ''},
       ],
@@ -31,7 +60,7 @@ export const PROJECTS : ProjectOverview[] = [
       title: 'Vigor Check',
       shortDescription: 'The original predecessor to Simple Fitness. ' +
 					'My first time experience creating an app of my own volition with JetBrains Language Kotlin',
-      thumbnailUrl: 'vigor-check-active-view.png',
+      thumbnailUrl: 'ic_dumbbell_launcher-playstore.png',
       demo: false,
       features : 
       [
@@ -79,13 +108,7 @@ export const PROJECTS : ProjectOverview[] = [
       ],
 
     },
-    {
-      id: '4',
-      title: 'This Portfolio!',
-      shortDescription: 'Find the documentation for this AWS hosted Angular project!',
-      thumbnailUrl: 'elkadri-token.png',
-      demo: false
-    },
+    
 
   ];
 
