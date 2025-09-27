@@ -91,7 +91,7 @@
   padding: var(--pad);
   box-shadow: 0 4px 12px rgba(2, 6, 23, 0.04);
   min-width: 30rem;
-  max-width: 50rem;
+  max-width: 40rem;
   
 }
 .vtl__header {
@@ -122,23 +122,26 @@
   border-radius: 999px;
 }
 .vtl__summary {
+  text-align: start;
   color: var(--muted);
   margin: 0.25rem 0 0.5rem;
 }
 .vtl__bullets {
+  text-align: start;
   margin: 0 0 0.5rem 1.2rem;
   color: var(--text);
 }
 .vtl__media {
-  margin: 0.5rem 0;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--fg);
 }
 .vtl__media img {
+
   display: block;
-  width: 20%;
-  height: auto;
+  width: 40%;
+  margin: 0 auto;
+  height: 20%;
 }
 .vtl__footer {
   margin-top: 0.25rem;
