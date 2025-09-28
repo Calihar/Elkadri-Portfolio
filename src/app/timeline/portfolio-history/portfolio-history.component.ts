@@ -9,7 +9,7 @@ import { TimelineStory } from '../../models/timeline-story';
   styleUrl: './portfolio-history.component.css',
 })
 export class PortfolioHistoryComponent {
-  stories: TimelineStory[] = [ //TODO: Fill in the blanks
+  stories: TimelineStory[] = [
     {
       title: 'Childhood Exposure to Code',
       summary: 'My Uncle introduced me to Unity and C# around age 10, sparking my interest in programming. '
