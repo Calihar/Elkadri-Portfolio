@@ -37,6 +37,7 @@ export const PROJECTS : ProjectOverview[] = [
       shortDescription: 'From plan to first set—in seconds. ' +
         'An offline-first Android workout tracker that gets you lifting faster, keeps your history tidy, and looks good doing it.',
       thumbnailUrl: 'ic_dumbbell_launcher_3-playstore.png',
+      thumbnailUrlStyle: 'border-radius: 50%;',
       demo: false,
       features: [
         {id: 0, name: 'Easy Plan Builder', description: 'Spin up splits or one-off sessions in seconds—no endless setup screens.', icon: 'simple-fitness-create-plan.png'},
@@ -61,6 +62,7 @@ export const PROJECTS : ProjectOverview[] = [
       shortDescription: 'The original predecessor to Simple Fitness. ' +
 					'My first time experience creating an app of my own volition with JetBrains Language Kotlin',
       thumbnailUrl: 'ic_dumbbell_launcher-playstore.png',
+      thumbnailUrlStyle: 'border-radius: 50%;',
       demo: false,
       features : 
       [

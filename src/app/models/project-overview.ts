@@ -6,6 +6,7 @@ export interface ProjectOverview {
 	  title: string;
 	  shortDescription: string;
 	  thumbnailUrl: string;
+	  thumbnailUrlStyle?: string;
 	  demo: boolean;
 	  features?: Feature[];
 	  documentations?: Documentations[];
